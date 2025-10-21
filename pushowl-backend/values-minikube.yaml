@@ -70,6 +70,6 @@ env:
   ENABLE_ENTITY_STORE_API: "False"
 
   # Optional services (empty for now)
-  LOG_TAG: "minikube"
+  LOG_TAG: "minikube-gitops-test"
   SIMPLE_CIPHER_KEY: "zeutfsxyovraimnhgdkbwjlqcp"
   KAFKA_CONNECT_URL: "http://kafka-connect:8083"
