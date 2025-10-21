@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: localhost:5000/pushowl-backend
-  tag: "b052e13"
+  tag: "c995078"
   pullPolicy: IfNotPresent
 
 service:
@@ -70,6 +70,6 @@ env:
   ENABLE_ENTITY_STORE_API: "False"
 
   # Optional services (empty for now)
-  LOG_TAG: "final-gitops-test-cycle"
+  LOG_TAG: "rolling-update-test-c995078"
   SIMPLE_CIPHER_KEY: "zeutfsxyovraimnhgdkbwjlqcp"
   KAFKA_CONNECT_URL: "http://kafka-connect:8083"
