@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: localhost:5000/pushowl-backend
-  tag: "argocd-test"
+  tag: "b052e13"
   pullPolicy: IfNotPresent
 
 service:
@@ -70,6 +70,6 @@ env:
   ENABLE_ENTITY_STORE_API: "False"
 
   # Optional services (empty for now)
-  LOG_TAG: "minikube-gitops-test"
+  LOG_TAG: "gitops-with-commit-tag"
   SIMPLE_CIPHER_KEY: "zeutfsxyovraimnhgdkbwjlqcp"
   KAFKA_CONNECT_URL: "http://kafka-connect:8083"
