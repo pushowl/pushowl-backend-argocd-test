@@ -1,0 +1,30 @@
+# Minikube-specific values
+replicaCount: 1
+
+image:
+  repository: localhost:5000/pushowl-backend
+  tag: "argocd-test"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+# Minimal environment configuration for Minikube testing
+env:
+  ENVIRONMENT: "minikube-test"
+  DEBUG: "True"
+  ALLOWED_HOSTS: "*"
+  # These will need to be customized based on your local setup
+  # DATABASE_URL: "postgresql://..."
+  # REDIS_URL_MASTER: "redis://..."
+  # RABBITMQ_URL: "amqp://..."

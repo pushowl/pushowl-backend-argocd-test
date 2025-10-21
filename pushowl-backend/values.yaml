@@ -1,0 +1,26 @@
+# Default values for pushowl-backend
+replicaCount: 1
+
+image:
+  repository: localhost:5000/pushowl-backend
+  tag: "argocd-test"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+# Environment variables (minimal for Minikube)
+env:
+  ENVIRONMENT: "minikube-test"
+  DEBUG: "True"
+  # Add other essential env vars here
