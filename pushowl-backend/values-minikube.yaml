@@ -19,12 +19,57 @@ resources:
     cpu: 250m
     memory: 256Mi
 
-# Minimal environment configuration for Minikube testing
+# Minikube environment configuration - connects to Docker Compose services on host
 env:
+  # Core Django settings
   ENVIRONMENT: "minikube-test"
   DEBUG: "True"
   ALLOWED_HOSTS: "*"
-  # These will need to be customized based on your local setup
-  # DATABASE_URL: "postgresql://..."
-  # REDIS_URL_MASTER: "redis://..."
-  # RABBITMQ_URL: "amqp://..."
+  SECRET_KEY: "minikube-test-secret-key-not-for-production"
+
+  # Database connections (pointing to host docker-compose services)
+  DATABASE_URL: "postgresql://postgres@host.minikube.internal:5432/postgres"
+  DATABASE_RO_URL: "postgresql://postgres@host.minikube.internal:5432/postgres"
+  ENTITY_STORE_DATABASE_URL: "postgresql://postgres@host.minikube.internal:5432/postgres"
+  PARTNERSHIP_DATABASE_URL: "postgresql://pushowl_usr:pushowl_pwd@host.minikube.internal:5434/partnership"
+
+  # Cache and Message Queue
+  REDIS_URL_MASTER: "redis://host.minikube.internal:6379/0"
+  REDIS_URL_RO: "redis://host.minikube.internal:6379/0"
+  RABBITMQ_URL: "amqp://guest:guest@host.minikube.internal:5672/"
+
+  # AWS Services (minimal/mock values for local testing)
+  S3_BUCKET: "minikube-test-bucket"
+  S3_BUCKET_PLATFORM_ENTITY_DATA: "minikube-platform-data"
+  S3_BUCKET_APP_DATA: "minikube-app-data"
+  S3_BUCKET_ATHENA_RESULT: "minikube-athena"
+  S3_BUCKET_STATIC_FILES: "minikube-static"
+  PLAYGROUND_S3_BUCKET: "minikube-playground"
+
+  # DynamoDB (pointing to local DynamoDB)
+  EVENT_STORE_ENDPOINT: "http://host.minikube.internal:9000"
+
+  # ClickHouse
+  CLICKHOUSE_HOST: "host.minikube.internal"
+  CLICKHOUSE_PORT: "8123"
+
+  # API and Dashboard endpoints (dummy for local)
+  API_ENDPOINT: "http://localhost:8000"
+  DASHBOARD_ENDPOINT: "http://localhost:3000"
+  CDN_PATH: "http://localhost:8000/static"
+
+  # Admin
+  ADMIN_PASSWORD: "admin123"
+
+  # Shopify (dummy keys for local testing - app won't work but will start)
+  SHOPIFY_API_KEY: "dummy-api-key"
+  SHOPIFY_SHARED_SECRET: "dummy-shared-secret"
+  NEW_SHOPIFY_SHARED_SECRET: "dummy-new-shared-secret"
+
+  # Feature flags
+  ENABLE_ENTITY_STORE_API: "False"
+
+  # Optional services (empty for now)
+  LOG_TAG: "minikube"
+  SIMPLE_CIPHER_KEY: "zeutfsxyovraimnhgdkbwjlqcp"
+  KAFKA_CONNECT_URL: "http://kafka-connect:8083"
